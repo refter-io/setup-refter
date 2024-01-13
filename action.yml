@@ -1,5 +1,5 @@
-name: Refter
-description: Easily install the refter-cli in GitHub actions and deploy your dbt docs to refter.io
+name: refter-cli
+description: Install the refter-cli in your GitHub actions and deploy your dbt docs to refter.io with ease.
 author: refter-io
 
 branding:
@@ -8,7 +8,7 @@ branding:
 
 inputs:
   version:
-    description: The version of the refter-cli to install
+    description: The version of refter-cli to install
 
 runs:
   using: node20

@@ -15,11 +15,9 @@ This action supports versions of:
 
 Initial release
 
-
 ## Usage
 
 ### Install the latest `refter-cli` in your workflow
-
 
 ```yaml
 steps:
