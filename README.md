@@ -1,6 +1,6 @@
 # setup-refter
 
-[![Build Status](https://github.com/refter-io/setup-refter/workflows/default/badge.svg)](https://github.com/refter-io/setup-refter/actions?query=workflow%3Adefault)
+[![Continuous Integration](https://github.com/refter-io/setup-refter/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/refter-io/setup-refter/actions/workflows/ci.yml)
 
 This action sets up the [refter-cli](https://refter.io) for use in Github Actions. You can specify what version you want to install, the action will fail if no matching versions are found.
 
