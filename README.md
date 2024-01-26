@@ -7,13 +7,17 @@ This action sets up the [refter-cli](https://refter.io) for use in Github Action
 This action supports versions of:
 
 - Python `>=3.7`
-- refter-cli `>=0.1.1`
+- refter-cli `>=0.1.3`
 
 ## Changelog
 
-### v1
+### v1.0.1
 
-Initial release
+- Require `refter-cli>=0.1.3`
+
+### v1.0.0
+
+- Initial release
 
 ## Usage
 
@@ -25,7 +29,7 @@ steps:
   - uses: actions/setup-python@v4
     with:
       python-version: "3.11"
-  - uses: refter-io/setup-refter@v1
+  - uses: refter-io/setup-refter@v1.0.1
   - run: refter --help
 ```
 
@@ -37,9 +41,9 @@ steps:
   - uses: actions/setup-python@v4
     with:
       python-version: "3.11"
-  - uses: refter-io/setup-refter@v1
+  - uses: refter-io/setup-refter@v1.0.1
     with:
-      version: "0.1.1"
+      version: "0.1.3"
   - run: refter --help
 ```
 
@@ -61,26 +65,32 @@ jobs:
 
     steps:
       - name: Checkout the code
-        uses: actions/checkout@v0.1.0
+        uses: actions/checkout@v3
 
       - name: Setup python
         uses: actions/setup-python@v4
         with:
           python-version: "3.11"
 
+      - name: Install dbt dependencies
+        uses: mwhitaker/dbt-action@master
+        with:
+          dbt_command: "dbt deps"
+        env:
+          DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
+
       - name: Create dbt manifest
         uses: mwhitaker/dbt-action@master
         with:
           dbt_command: "dbt ls --profiles-dir ."
-          dbt_project_folder: "dbt_project"
         env:
           DBT_BIGQUERY_TOKEN: ${{ secrets.DBT_BIGQUERY_TOKEN }}
 
-      - name: Setup refter
-        uses: refter-io/setup-refter@v1
+      - name: Setup refter-cli
+        uses: refter-io/setup-refter@v1.0.0
 
       - name: Deploy to refter
-        run: refter deploy -t {{ secrets.REFTER_TOKEN }}
+        run: refter deploy -t ${{ secrets.REFTER_TOKEN }}
         env:
           CI_COMMIT: ${{ github.sha }}
           CI_BRANCH: ${{ github.ref }}
