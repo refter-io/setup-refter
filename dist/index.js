@@ -7254,9 +7254,9 @@ function getVersionInput(name) {
     if (!coerced) {
         throw new Error(`Passed refter version '${version}' is not a valid`);
     }
-    else if (!semver_1.default.satisfies(coerced, '>=0.1.0')) {
+    else if (!semver_1.default.satisfies(coerced, '>=0.1.3')) {
         throw new Error(`Passed refter version '${coerced}' is not supported.
-       Please use any other supported version >=0.1.0`);
+       Please use any other supported version >=0.1.3`);
     }
     return version.trim();
 }
